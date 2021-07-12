@@ -4,24 +4,6 @@
 
 #ifndef DS_CONST_H
 #define DS_CONST_H
-
-// 函数结构状态代码
-#define TRUE            1
-#define FALSE           0
-#define OK              1
-#define ERROR           0
-#define INFEASIBLE      -1
-#define OVERFLOW        -2
-// Status 是函数的类型，其值是函数结构状态代码
-// 当函数返回值为函数结构状态代码时，函数定义为 Status 类型
-typedef  int    Status;
-
-#ifndef USER_DATA_TYPE
-#define USER_DATA_TYPE
-// 用户自定的数据类型
-typedef int ElemType;
-#endif
-
 /**
  * 约定数据结构的表示用类型定义 typedef 描述
  * 数据元素类型约定为 ElemType，由用户在使用该数据类型时自行定义
@@ -54,4 +36,25 @@ typedef int ElemType;
  * 或运算 || ： 对于 A || B ，当 A 的值为非 0 时，不再对 B 求值
  */
 
+// 函数结构状态代码
+#define TRUE            1
+#define FALSE           0
+#define OK              1
+#define ERROR           0
+#define INFEASIBLE      -1
+#define OVERFLOW        -2
+
+// Status 是函数的类型，其值是函数结构状态代码
+// 当函数返回值为函数结构状态代码时，函数定义为 Status 类型
+typedef     int     Status;
+// 用户自定的数据类型
+//typedef     int     ElemType;
+
 #endif //DS_CONST_H
+
+
+
+
+
+
+

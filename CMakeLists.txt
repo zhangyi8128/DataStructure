@@ -5,13 +5,15 @@ set(CMAKE_CXX_STANDARD 11)
 
 include_directories(src
         src/DSInclude
-        src/DSInclude/sample
         )
 
 add_executable(DS main.cpp
-        src/DSInclude/sample_Triplet.h
+        src/DSInclude/ADT_Triplet.h
         src/DSInclude/const.h
-        src/DSInclude/sample/sample_Triplet.cpp)
+        src/DSInclude/ADT_Triplet.cpp
+        src/DSInclude/ADT_List_Sq.h
+        src/DSInclude/ADT_List_Sq.cpp
+        )
 
 #file (GLOB_RECURSE files *.cpp)
 #foreach (file ${files})
