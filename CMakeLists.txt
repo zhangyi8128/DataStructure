@@ -13,7 +13,7 @@ add_executable(DS main.cpp
         src/DSInclude/ADT_Triplet.cpp
         src/DSInclude/ADT_List_Sq.h
         src/DSInclude/ADT_List_Sq.cpp
-        )
+        src/DSInclude/ADT_LinkList.cpp src/DSInclude/ADT_LinkList.h)
 
 #file (GLOB_RECURSE files *.cpp)
 #foreach (file ${files})

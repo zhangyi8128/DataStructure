@@ -166,8 +166,6 @@ void ADT_List_Sq::Test() {
     std::cout << "======测试 ClearList_Sq 方式=====" << std::endl;
     ClearList_Sq(L);
     listPrint(L);
-
-
     std::cout << "======测试 DestroyList_Sq 方式=====" << std::endl;
     std::cout << "status = " << DestroyList_Sq(L) << std::endl;
 }

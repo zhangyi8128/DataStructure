@@ -2,6 +2,7 @@
 
 #include <ADT_List_Sq.h>
 #include "ADT_Triplet.h"
+#include "ADT_LinkList.h"
 
 
 int main() {
@@ -11,7 +12,10 @@ int main() {
 //    ADT_Triplet triplet;
 //    triplet.sampleTripletTest();
 
-    ADT_List_Sq list;
+//    ADT_List_Sq list;
+//    list.Test();
+
+    ADT_LinkList list;
     list.Test();
 
     return 0;
