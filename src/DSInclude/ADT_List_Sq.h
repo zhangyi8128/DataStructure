@@ -64,18 +64,19 @@ public:      // 当线性表的顺序表示
      * 操作结果：返回 L 中第 i 个与 e 满足关系 compare（） 的数据元素的位序。若这样的数据元素不存在，则返回值为 0
      */
     int LocateElem_Sq(List L, ElemType e, Status ( *compare)(ElemType , ElemType));
+    static Status Compare_Sq_Equal(ElemType a, ElemType b);
 
     /**
      * 初始条件：线性表 L 已存在
      * 操作结果：若 cur_e 是 L 的数据元素，且不是第一个，则用 pre_e 返回它的前驱，否则操作失败，pre_e 无定义。
      */
-    Status PriorElem_Sq(List L, ElemType cur_e, List &pre_e);
+    Status PriorElem_Sq(List L, ElemType cur_e, ElemType &pre_e);
 
     /**
      * 初始条件：线性表 L 已存在
      * 操作结果：若 cur_e 是 L 的数据元素，且不是最后一个，则用 next_e 返回它的后继，否则操作失败，next_e 无定义。
      */
-    Status NextElem_Sq(List L, ElemType cur_e, List &next_e);
+    Status NextElem_Sq(List L, ElemType cur_e, ElemType &next_e);
 
     /**
      * 初始条件：线性表 L 已存在，1 <= i <= ListLength(L) + 1
@@ -88,12 +89,6 @@ public:      // 当线性表的顺序表示
      * 操作结果：删除 L 的第 i 个数据元素，并用 e 返回其值，L 的长度减 1
      */
     Status ListDelete_Sq(List &L, int i, ElemType &e);
-
-    /**
-     * 初始条件：线性表 L 已存在
-     * 操作结果：依次对 L 的每个数据元素调用函数 visit（）。一旦 visit（） 失败，则操作失败。
-     */
-    Status ListTraverse_Sq(List L, int (*visit)());
 
     /**
      * 将所有在线性表 Lb 中但不在 La 中的数据元素插入到 La 中
