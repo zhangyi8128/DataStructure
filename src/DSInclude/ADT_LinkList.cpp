@@ -112,19 +112,64 @@ Status ADT_LinkList::ListDelete_L(LinkList &L, int i, ElemType &e) {
      free(q);
     return OK;
 }
+/**
+ * 算法 2.11
+ * 逆位序输入 n 个元素的值，建立带表头结点的单链线性表 L
+ * @param L 单链线性表
+ * @param n 元素个数
+ */
+void ADT_LinkList::CreateList_L(LinkList &L, int n) {
+    L = (LinkList) malloc(sizeof(LNode));
+    L->next = NULL;
+    for(int i = n; i > 0; --i){
+        auto p = (LinkList)malloc(sizeof (LNode));
+        std::cin >> p->data ;
+        p->next = L->next;
+        L->next = p;
+    }
+}
+
+/**
+ * 算法 2.12
+ * 一直单链线性表 La 和 Lb 的元素按值非递减排列
+ * 归并 La 和 Lb 得到的新的单链线性表 Lc，Lc 的元素也按值非递减排列
+ * @param La 原始单链线性表
+ * @param Lb 原始单链线性表
+ * @param Lc 归并后得到的单链线性表
+ */
+void ADT_LinkList::MergeList_L(LinkList La, LinkList Lb, LinkList &Lc) {
+    // 以 La 的头结点作为 Lc 的头结点
+    LNode *pa = La->next, *pb = Lb->next, *pc = Lc = La;
+    while (pa && pb) {
+        if (pa->data <= pb->data) {
+            pc->next = pa;
+            pc = pa;
+            pa = pa->next;
+        } else {
+            pc->next = pb;
+            pc = pb;
+            pb = pb->next;
+        }
+    }
+    pc->next = pa ? pa : pb;
+    free(Lb);
+}
 
 void ADT_LinkList::listPrint(LinkList L) {
     int i = 1;
     std::cout << "打印 List 成员：\n";
     do {
-        L = L->next;
-        std::cout << "第" << i++ << "个元素：" << L->data << "\n";
+        if (L->next) {
+            L = L->next;
+            std::cout << "第" << i++ << "个元素：" << L->data << "\n";
+        }
     } while (L->next != nullptr);
     std::cout << std::endl;
 }
 
 void ADT_LinkList::Test() {
     LinkList L;
+    LinkList pre_e, next_e;
     Status status;
     int i = 0, e = 0;
 
@@ -141,7 +186,98 @@ void ADT_LinkList::Test() {
     std::cout << "======测试 GetElem_L 方式=====" << std::endl;
     i = 2;
     GetElem_L(L, i, e);
+    std::cout << "======测试 ListEmpty_L 方式=====" << std::endl;
+    status = ListEmpty_L(L);
+    std::cout << status << std::endl;
+
+    std::cout << "======测试 ListLength_L 方式=====" << std::endl;
+    int length = ListLength_L(L);
+    std::cout << "length=" << length << std::endl;
+    std::cout << "======测试 LocateElem_L 方式=====" << std::endl;
+    e = 8;
+    i = LocateElem_L(L, e);
+    std::cout << e << " location is " << i << std::endl;
+
+    std::cout << "======测试 PriorElem_L 方式=====" << std::endl;
+    PriorElem_L(L, e, pre_e);
+    std::cout <<"PriorElem is " << pre_e->data << std::endl;
+
+    std::cout << "======测试 NextElem_L 方式=====" << std::endl;
+    NextElem_L(L,e,next_e);
+    std::cout << "nextElem is " << next_e->data << std::endl;
+
+
+
+    std::cout << "======测试 ClearList_L 方式=====" << std::endl;
+    ClearList_L(L);
+    listPrint(L);
     std::cout << "第" << i << "个元素为：" << e << std::endl;
     std::cout << "======测试 DestroyList_Sq 方式=====" << std::endl;
     std::cout << "status = " << DestroyList_L(L) << std::endl;
+}
+
+Status ADT_LinkList::ClearList_L(LinkList &L) {
+    L->next = nullptr;
+    L->data = 0;
+    return OK;
+}
+
+Status ADT_LinkList::ListEmpty_L(LinkList L) {
+    if(L->next == nullptr) return TRUE;
+    else return FALSE;
+}
+
+int ADT_LinkList::ListLength_L(LinkList L) {
+    int length = 0;
+    LNode *p = L;
+    while(p->next != nullptr){
+        ++length;
+        p = p->next;
+    }
+    return length;
+}
+
+/**
+ * @return 如果 a 和 b 相等则返回 true，否则返回 false
+ */
+Status ADT_LinkList::Compare_List_L(ElemType a, ElemType b) {
+    if(a == b) return TRUE;
+    else return FALSE;
+}
+
+/**
+ * 成功返回下标，否则返回 -1
+ */
+int ADT_LinkList::LocateElem_L(LinkList L, ElemType e) {
+    LNode *p = L;
+    Status ret = -1;
+    while(p) {
+        ret = Compare_List_L(e, p->data);
+        p = p->next;
+    }
+    return ret;
+}
+
+void ADT_LinkList::PriorElem_L(LinkList L, ElemType cur_e, LinkList &pre_e) {
+    LNode *p = L->next, *q = L;
+    while(p){
+        if (p->data == cur_e) {
+            pre_e = q;
+            return;
+        } else {
+            p = p->next;
+            q = q->next;
+        }
+    }
+}
+
+void ADT_LinkList::NextElem_L(LinkList L, ElemType cur_e, LinkList &next_e) {
+    LNode *p = L;
+    while(p) {
+        if (p->next && p->data == cur_e) {
+            next_e = p->next;
+            return;
+        }
+        p = p->next;
+    }
 }

@@ -2,8 +2,8 @@
 // Created by 张翼 on 2021/7/12.
 //
 
-#include <cstdlib>
 #include "ADT_List_Sq.h"
+#include <cstdlib>
 #include <iostream>
 
 /**

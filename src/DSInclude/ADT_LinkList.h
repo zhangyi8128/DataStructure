@@ -48,7 +48,7 @@ public:      // 当线性表的链式表示
      * 初始条件：线性表 L 已存在
      * 操作结果：返回 L 中数据元素个数
      */
-    Status ListLength_L(LinkList L);
+    int ListLength_L(LinkList L);
 
     /**
      * 初始条件：L 为带头结点的单链表的头指针
@@ -60,20 +60,20 @@ public:      // 当线性表的链式表示
      * 初始条件：线性表 L 已存在，compare（）是数据元素判定函数
      * 操作结果：返回 L 中第 i 个与 e 满足关系 compare（） 的数据元素的位序。若这样的数据元素不存在，则返回值为 0
      */
-    Status LocateElem_L(LinkList L, ElemType e, Status (*compare)(const void *, const void *));
+    int LocateElem_L(LinkList L, ElemType e);
     static Status Compare_List_L(ElemType a, ElemType b);
 
     /**
      * 初始条件：线性表 L 已存在
      * 操作结果：若 cur_e 是 L 的数据元素，且不是第一个，则用 pre_e 返回它的前驱，否则操作失败，pre_e 无定义。
      */
-    Status PriorElem_L(LinkList L, ElemType cur_e, LinkList &pre_e);
+    void PriorElem_L(LinkList L, ElemType cur_e, LinkList &pre_e);
 
     /**
      * 初始条件：线性表 L 已存在
      * 操作结果：若 cur_e 是 L 的数据元素，且不是最后一个，则用 next_e 返回它的后继，否则操作失败，next_e 无定义。
      */
-    Status NextElem_L(LinkList L, ElemType cur_e, LinkList &next_e);
+    void NextElem_L(LinkList L, ElemType cur_e, LinkList &next_e);
 
     /**
      * 初始条件：线性表 L 已存在，1 <= i
@@ -98,16 +98,19 @@ public:      // 当线性表的链式表示
      */
     Status ListTraverse_L(LinkList L, Status (*visit)());
 
-    /**
-     * 将所有在线性表 Lb 中但不在 La 中的数据元素插入到 La 中
-     */
-    Status Union_L(LinkList &La, LinkList Lb);
 
     /**
      * 算法 2.1 已知线性表 La 和 Lb 中的数据元素按值非递减排列
      * 归并 La 和 Lb 得到新的线性表 Lc，Lc 的数据元素也按值非递减排列
      */
-    Status MergeList_L(LinkList La, LinkList Lb, LinkList &Lc);
+    void MergeList_L(LinkList La, LinkList Lb, LinkList &Lc);
+
+    /**
+     * 逆位序输入 n 个元素的值，建立带表头结点的单链线性表 L
+     * @param L 单链线性表
+     * @param n 元素个数
+     */
+    void CreateList_L(LinkList &L, int n);
 
     /**
      * 测试用例

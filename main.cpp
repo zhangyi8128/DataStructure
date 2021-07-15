@@ -1,7 +1,8 @@
 #include <iostream>
 
-#include <ADT_List_Sq.h>
-#include "ADT_Triplet.h"
+//#include <ADT_List_Sq.h>
+//#include <ADT_SLinkList.h>
+//#include "ADT_Triplet.h"
 #include "ADT_LinkList.h"
 
 
@@ -17,6 +18,9 @@ int main() {
 
     ADT_LinkList list;
     list.Test();
+
+//    ADT_SLinkList list;
+//    list.test();
 
     return 0;
 }
