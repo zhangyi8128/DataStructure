@@ -6,6 +6,11 @@
 #include <iostream>
 #include <cstdlib>
 
+
+/**
+ * 注意：单链表有带头结点的和不带头结点之分，两种处理方式不同
+ */
+
 Status ADT_LinkList::InitList_L(LinkList &L) {
     L = (LinkList) malloc(sizeof(LNode));
     if (!L)exit(OVERFLOW);
