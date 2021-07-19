@@ -1,5 +1,6 @@
 #include <iostream>
-#include <ADT_LinkList_HL.h>
+#include <ADT_Stack.h>
+//#include <ADT_LinkList_HL.h>
 
 //#include <ADT_DuLinkList.h>
 //#include <ADT_List_Sq.h>
@@ -27,8 +28,10 @@ int main() {
 //    ADT_DuLinkList list;
 //    list.test();
 
-    ADT_LinkList_HL list;
-    list.test();
+//    ADT_LinkList_HL list;
+//    list.test();
+
+    ADT_Stack::test();
 
     return 0;
 }

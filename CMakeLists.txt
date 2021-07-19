@@ -18,7 +18,10 @@ add_executable(DS main.cpp
         src/DSInclude/ADT_SLinkList.cpp
         src/DSInclude/ADT_SLinkList.h
         src/DSInclude/ADT_DuLinkList.cpp
-        src/DSInclude/ADT_DuLinkList.h src/DSInclude/ADT_LinkList_HL.cpp src/DSInclude/ADT_LinkList_HL.h)
+        src/DSInclude/ADT_DuLinkList.h
+        src/DSInclude/ADT_LinkList_HL.cpp
+        src/DSInclude/ADT_LinkList_HL.h
+        src/DSInclude/ADT_Polynomial.h src/DSInclude/ADT_Stack.cpp src/DSInclude/ADT_Stack.h src/DSInclude/ADT_typedef.h src/DSInclude/Maze.cpp)
 
 #file (GLOB_RECURSE files *.cpp)
 #foreach (file ${files})

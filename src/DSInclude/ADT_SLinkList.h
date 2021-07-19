@@ -6,7 +6,7 @@
 #define DS_ADT_SLINKLIST_H
 
 #include "const.h"
-typedef char ElemType;
+//typedef char ElemType;
 
 /**
  * 静态链表

@@ -43,12 +43,17 @@
 #define ERROR           0
 #define INFEASIBLE      -1
 #define OVERFLOW        -2
-
+// 初始存储空间分配量
+#define STACK_INIT_SIZE 100
+// 存储空间分配增量
+#define STACKINCREMENT 10
 // Status 是函数的类型，其值是函数结构状态代码
 // 当函数返回值为函数结构状态代码时，函数定义为 Status 类型
 typedef     int     Status;
 // 用户自定的数据类型
 //typedef     int     ElemType;
+
+
 
 #endif //DS_CONST_H
 

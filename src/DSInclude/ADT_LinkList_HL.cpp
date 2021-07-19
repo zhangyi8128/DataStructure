@@ -20,7 +20,7 @@ void ADT_LinkList_HL::test() {
               << std::endl;
 
     std::cout << "======测试 MakeNode 方式=====" << std::endl;
-    e = 7;
+//    e = 7;
     status = MakeNode(p, e);
     std::cout << "status：" << status << std::endl;
 
@@ -43,9 +43,9 @@ void ADT_LinkList_HL::test() {
 
     std::cout << "======测试 Append 方式=====" << std::endl;
     Append(L, p);
-    MakeNode(q, 5);
+    MakeNode(q, e);
     Append(L, q);
-    std::cout << "q.data：" << q->data << std::endl;
+//    std::cout << "q.data：" << q->data << std::endl;
 
     std::cout << "======测试 Remove 方式=====" << std::endl;
     Remove(L, r);
@@ -245,5 +245,60 @@ Status ADT_LinkList_HL::LocatePos(LinkList L, int i, Link &p) {
     p = q;
     return OK;
 }
+
+Status EqualCompare(ElemType n1, ElemType n2){
+    if (n1 == n2) return OK;
+    else return ERROR;
+}
+
+Position ADT_LinkList_HL::LocateElem(LinkList L, ElemType e, Status (*compare)(ElemType, ElemType)) {
+    if(L.len == 0) return nullptr;
+    Link p = L.head->next;
+    while(p != nullptr && !EqualCompare(p->data, e)) p = p->next;
+    return p;
+}
+
+Status ADT_LinkList_HL::ListTraverse(LinkList L, Status (*visit)(ElemType)) {
+    return 0;
+}
+
+Status ADT_LinkList_HL::ListInsert_L(LinkList &L, int i, ElemType e) {
+    Link p, s;
+    // i 值不合法
+    if (!LocatePos(L, i-1, p)) return ERROR;
+    // 结点存储分配失败
+    if (!MakeNode(s, e)) return ERROR;
+    // 对于从第 i 个结点开始的链表，第 i-1 个结点是它的头结点
+    InsFirst(p, s);
+    return OK;
+}
+
+Status ADT_LinkList_HL::MergeList_L(LinkList &La, LinkList &Lb, LinkList &Lc, int (*compare)(ElemType, ElemType)) {
+    // 存储空间分配失败
+    if(!InitList(Lc)) return ERROR;
+    Link ha = GetHead(Lc), hb = GetHead(Lb);
+    Link pa = NextPos(La, ha), pb = NextPos(Lb, hb);
+    Link q;
+    while (pa && pb) {
+        ElemType a = GetCurElem(pa), b = GetCurElem(pb);
+        if ((*compare)(a,b) < 0) {
+            DelFirst(ha, q);
+            Append(Lc, q);
+            pa = NextPos(La, ha);
+        } else {
+            DelFirst(hb, q);
+            Append(Lc, q);
+            pb = NextPos(Lb, hb);
+        }
+    }
+    if (pa) Append(Lc, pb);
+    else Append(Lc, pb);
+    FreeNode(ha);
+    FreeNode(hb);
+    return OK;
+}
+
+
+
 
 

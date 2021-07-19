@@ -6,19 +6,9 @@
 #define DS_ADT_LINKLIST_HL_H
 
 #include "const.h"
+#include "ADT_typedef.h"
 
-typedef int ElemType;
 
-
-typedef struct LNode {  // 16 内存对齐 4+4+8
-    ElemType data;      // 4
-    struct LNode *next; // 8
-} *Link, *Position;     // 8
-
-typedef struct {
-    Link head, tail;    // 8+8
-    int len;            // 4
-} LinkList;             // 24 = 8+8+4+4 内存对齐
 
 
 class ADT_LinkList_HL {
@@ -137,13 +127,24 @@ public:
     /**
      * 依次对 L 的每个元素调用函数 visit（）。一旦 visit（）失败，则操作失败
      */
-    Status ListTraverse(LinkList L, Status (*visit()));
+    Status ListTraverse(LinkList L, Status (*visit)(ElemType));
+
+    /**
+     * 在带头结点的单链星星表 L 的第 i 个元素之前插入元素 e
+     */
+     Status ListInsert_L(LinkList &L, int i, ElemType e);
+
+     /**
+      * 已知单链线性表 La 和 Lb 的元素按值非递减排列
+      * 归并 La 和 Lb 得到新的单链线性表 Lc，Lc 的元素也按值非递减排列
+      */
+      Status MergeList_L(LinkList &La, LinkList &Lb, LinkList &Lc,
+                        int (*compare)(ElemType, ElemType));
 
     /**
      * 测试用
      */
      void test();
-
 };
 
 
